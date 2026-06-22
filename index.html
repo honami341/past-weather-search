@@ -20,8 +20,8 @@
         <span>今日、暑かった？</span>
       </a>
       <nav class="header-nav" aria-label="ページ内メニュー">
-        <a href="#recent">今日・昨日</a>
-        <a href="#archive">もっと前の日</a>
+        <button type="button" data-scroll-target="recent">今日・昨日</button>
+        <button type="button" data-scroll-target="archive">もっと前の日</button>
       </nav>
     </header>
 
@@ -31,8 +31,8 @@
         <h1>今日、<br><em>暑かった？</em></h1>
         <p class="hero-copy">今日と昨日の気温や雨を、1時間ごとに振り返る。自分の街も、少し離れたあの人の街も、都道府県からすぐに探せます。</p>
         <div class="hero-actions" aria-label="データの期間を選ぶ">
-          <a class="hero-action hero-action-recent" href="#recent">直近2〜3日のデータを見る</a>
-          <a class="hero-action" href="#archive">それより前のデータを見る</a>
+          <button class="hero-action hero-action-recent" type="button" data-scroll-target="recent">直近2〜3日のデータを見る</button>
+          <button class="hero-action" type="button" data-scroll-target="archive">それより前のデータを見る</button>
         </div>
       </section>
 

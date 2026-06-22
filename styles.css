@@ -40,8 +40,8 @@ a { color: inherit; }
 .brand-mark { width: 38px; height: 38px; display: grid; place-items: center; color: var(--green); background: var(--mint); border-radius: 50%; }
 .brand-mark svg { width: 26px; fill: none; stroke: currentColor; stroke-width: 2; stroke-linecap: round; }
 .header-nav { display: flex; gap: 24px; }
-.header-nav a { color: var(--muted); font-size: .76rem; text-decoration: none; }
-.header-nav a:hover { color: var(--green); }
+.header-nav button { cursor: pointer; padding: 0; color: var(--muted); background: none; border: 0; font-size: .76rem; }
+.header-nav button:hover { color: var(--green); }
 
 main { overflow: hidden; }
 .hero { max-width: 940px; margin: 0 auto; padding: 100px 32px 72px; text-align: center; }
@@ -51,7 +51,7 @@ main { overflow: hidden; }
 .hero h1 em::after { content: ""; position: absolute; left: 3%; right: 1%; bottom: -.08em; height: 7px; background: var(--sun); border-radius: 80% 20% 70% 30%; opacity: .75; transform: rotate(-1deg); }
 .hero-copy { max-width: 630px; margin: 0 auto; color: var(--muted); font-size: 1rem; line-height: 2; }
 .hero-actions { display: flex; flex-wrap: wrap; justify-content: center; gap: 10px; margin-top: 32px; }
-.hero-action { min-width: 190px; padding: 11px 18px; color: var(--green); background: rgb(255 255 255 / 48%); border: 1px solid rgb(25 104 73 / 28%); border-radius: 8px; font-size: .74rem; font-weight: 600; text-decoration: none; transition: .16s ease; }
+.hero-action { cursor: pointer; min-width: 190px; padding: 11px 18px; color: var(--green); background: rgb(255 255 255 / 48%); border: 1px solid rgb(25 104 73 / 28%); border-radius: 8px; font-size: .74rem; font-weight: 600; transition: .16s ease; }
 .hero-action:hover { background: white; border-color: var(--green); transform: translateY(-1px); }
 .hero-action-recent { color: white; background: var(--green); border-color: var(--green); }
 .hero-action-recent:hover { color: white; background: var(--green-dark); border-color: var(--green-dark); }
@@ -119,7 +119,7 @@ footer { display: flex; justify-content: space-between; padding: 26px max(32px, 
 @media (max-width: 720px) {
   .site-header { height: 66px; padding: 0 20px; }
   .header-nav { gap: 14px; }
-  .header-nav a { font-size: .67rem; }
+  .header-nav button { font-size: .67rem; }
   .hero { padding: 72px 22px 52px; }
   .hero h1 { font-size: clamp(2.3rem, 12vw, 3.6rem); }
   .hero-copy { font-size: .88rem; }

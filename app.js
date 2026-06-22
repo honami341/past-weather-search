@@ -13,6 +13,19 @@ const REGIONS = [
   ["九州・沖縄", ["福岡県", "佐賀県", "長崎県", "熊本県", "大分県", "宮崎県", "鹿児島県", "沖縄県"]]
 ];
 
+if ("scrollRestoration" in history) history.scrollRestoration = "manual";
+if (["#recent", "#archive"].includes(window.location.hash)) {
+  history.replaceState(null, "", `${window.location.pathname}${window.location.search}`);
+  window.addEventListener("load", () => window.scrollTo(0, 0), { once: true });
+}
+
+document.querySelectorAll("[data-scroll-target]").forEach((button) => {
+  button.addEventListener("click", () => {
+    history.replaceState(null, "", `${window.location.pathname}${window.location.search}`);
+    document.querySelector(`#${button.dataset.scrollTarget}`).scrollIntoView({ behavior: "smooth", block: "start" });
+  });
+});
+
 function renderPrefectureButtons(containerSelector, onSelect) {
   const container = document.querySelector(containerSelector);
   REGIONS.forEach(([region, prefectures]) => {
@@ -120,7 +133,7 @@ function updateArchiveUrl() {
   const url = new URL(window.location.href);
   archiveState.prefecture ? url.searchParams.set("pref", archiveState.prefecture) : url.searchParams.delete("pref");
   archiveState.station ? url.searchParams.set("station", archiveState.station.block) : url.searchParams.delete("station");
-  history.replaceState(null, "", `${url.pathname}${url.search}${url.hash}`);
+  history.replaceState(null, "", `${url.pathname}${url.search}`);
 }
 
 function selectArchivePrefecture(prefecture, shouldScroll = true) {
