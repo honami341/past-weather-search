@@ -3,9 +3,9 @@
   <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description" content="都道府県と観測地点を選んで、気象庁の過去の気象データをすぐに開けます。">
+    <meta name="description" content="今日や昨日の気温と雨を、全国のAMeDAS観測地点からすぐに確認できます。">
     <meta name="theme-color" content="#f5f7f3">
-    <title>過去天気検索</title>
+    <title>今日、暑かった？｜今日・昨日のAMeDAS</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;600;700&family=Shippori+Mincho:wght@600&display=swap" rel="stylesheet">
@@ -13,64 +13,112 @@
   </head>
   <body>
     <header class="site-header">
-      <a class="brand" href="./" aria-label="過去天気検索 トップ">
+      <a class="brand" href="./" aria-label="今日、暑かった？ トップ">
         <span class="brand-mark" aria-hidden="true">
           <svg viewBox="0 0 40 40" role="img"><path d="M8 27.5h22.5a6.5 6.5 0 0 0 .3-13 10.5 10.5 0 0 0-19.9 2.7A5.2 5.2 0 0 0 8 27.5Z"/><path d="M13 32h14"/></svg>
         </span>
-        <span>過去天気検索</span>
+        <span>今日、暑かった？</span>
       </a>
-      <a class="about-link" href="#about">このサイトについて</a>
+      <nav class="header-nav" aria-label="ページ内メニュー">
+        <a href="#recent">今日・昨日</a>
+        <a href="#archive">もっと前の日</a>
+      </nav>
     </header>
 
     <main>
       <section class="hero">
-        <p class="eyebrow">JAPAN WEATHER ARCHIVE FINDER</p>
-        <h1>あの日の天気を、<br><em>すぐに見つける。</em></h1>
-        <p class="hero-copy">都道府県と観測地点を選ぶだけ。気温や降水量など、気象庁が公開する過去の観測データへ案内します。</p>
+        <p class="eyebrow">TODAY &amp; YESTERDAY'S AMEDAS</p>
+        <h1>今日、<br><em>暑かった？</em></h1>
+        <p class="hero-copy">今日と昨日の気温や雨を、1時間ごとに振り返る。自分の街も、少し離れたあの人の街も、都道府県からすぐに探せます。</p>
         <div class="data-tags" aria-label="確認できる主なデータ">
-          <span>気温</span><span>降水量</span><span>風向・風速</span><span>日照時間</span>
+          <span>今日</span><span>昨日</span><span>1時間ごと</span><span>気温・雨</span>
         </div>
+        <p class="care-note"><span aria-hidden="true">○</span> 離れて暮らす家族の街は、今日はどんな一日だっただろう。</p>
       </section>
 
-      <section class="finder" aria-labelledby="finder-title">
-        <div class="steps" aria-label="検索手順">
-          <span class="step is-active" data-step="1"><b>1</b> 都道府県</span>
+      <section id="recent" class="finder recent-finder" aria-labelledby="recent-title">
+        <div class="finder-label">直近3日間のAMeDAS</div>
+        <div class="steps recent-steps" aria-label="検索手順">
+          <span class="step is-active" data-recent-step="1"><b>1</b> 都道府県</span>
           <span class="step-line"></span>
-          <span class="step" data-step="2"><b>2</b> 観測地点</span>
-          <span class="step-line"></span>
-          <span class="step" data-step="3"><b>3</b> 日付</span>
+          <span class="step" data-recent-step="2"><b>2</b> 観測地点</span>
         </div>
 
-        <div id="prefecture-view">
+        <div id="recent-prefecture-view">
           <div class="section-heading">
             <div>
               <p class="section-number">STEP 01</p>
-              <h2 id="finder-title">都道府県を選ぶ</h2>
+              <h2 id="recent-title">見たい街の都道府県を選ぶ</h2>
             </div>
-            <p>地方ごとに探せます</p>
+            <p>現在観測中の地点から探せます</p>
           </div>
-          <div id="region-list" class="region-list"></div>
+          <div id="recent-region-list" class="region-list"></div>
         </div>
 
-        <div id="station-view" class="is-hidden">
-          <button class="back-button" type="button" data-back="prefecture">← 都道府県を選び直す</button>
+        <div id="recent-station-view" class="is-hidden">
+          <button class="back-button" type="button" data-recent-back>← 都道府県を選び直す</button>
           <div class="section-heading">
             <div>
               <p class="section-number">STEP 02</p>
-              <h2><span id="selected-prefecture"></span>の観測地点</h2>
+              <h2><span id="recent-selected-prefecture"></span>の観測地点</h2>
             </div>
-            <p id="station-count"></p>
+            <p id="recent-station-count"></p>
           </div>
           <label class="search-box">
             <span aria-hidden="true">⌕</span>
-            <input id="station-search" type="search" placeholder="地点名で絞り込む" autocomplete="off">
+            <input id="recent-station-search" type="search" placeholder="地点名で絞り込む" autocomplete="off">
           </label>
-          <div id="station-list" class="station-list"></div>
-          <p id="station-empty" class="empty-state is-hidden">該当する観測地点がありません。</p>
+          <p class="station-help">地点を選ぶと、気象庁の「1時間ごとの値」が新しいタブで開きます。</p>
+          <div id="recent-station-list" class="station-list recent-station-list"></div>
+          <p id="recent-station-empty" class="empty-state is-hidden">該当する観測地点がありません。</p>
+        </div>
+      </section>
+
+      <div class="archive-lead">
+        <p class="section-number">WEATHER ARCHIVE</p>
+        <h2>もっと前の日を調べる</h2>
+        <p>旅行やイベントの日など、日付を指定して過去の観測データを探せます。</p>
+      </div>
+
+      <section id="archive" class="finder archive-finder" aria-labelledby="archive-title">
+        <div class="steps" aria-label="過去検索の手順">
+          <span class="step is-active" data-archive-step="1"><b>1</b> 都道府県</span>
+          <span class="step-line"></span>
+          <span class="step" data-archive-step="2"><b>2</b> 観測地点</span>
+          <span class="step-line"></span>
+          <span class="step" data-archive-step="3"><b>3</b> 日付</span>
         </div>
 
-        <div id="date-view" class="is-hidden">
-          <button class="back-button" type="button" data-back="station">← 観測地点を選び直す</button>
+        <div id="archive-prefecture-view">
+          <div class="section-heading">
+            <div>
+              <p class="section-number">STEP 01</p>
+              <h2 id="archive-title">都道府県を選ぶ</h2>
+            </div>
+            <p>過去の観測地点を含みます</p>
+          </div>
+          <div id="archive-region-list" class="region-list"></div>
+        </div>
+
+        <div id="archive-station-view" class="is-hidden">
+          <button class="back-button" type="button" data-archive-back="prefecture">← 都道府県を選び直す</button>
+          <div class="section-heading">
+            <div>
+              <p class="section-number">STEP 02</p>
+              <h2><span id="archive-selected-prefecture"></span>の観測地点</h2>
+            </div>
+            <p id="archive-station-count"></p>
+          </div>
+          <label class="search-box">
+            <span aria-hidden="true">⌕</span>
+            <input id="archive-station-search" type="search" placeholder="地点名で絞り込む" autocomplete="off">
+          </label>
+          <div id="archive-station-list" class="station-list"></div>
+          <p id="archive-station-empty" class="empty-state is-hidden">該当する観測地点がありません。</p>
+        </div>
+
+        <div id="archive-date-view" class="is-hidden">
+          <button class="back-button" type="button" data-archive-back="station">← 観測地点を選び直す</button>
           <div class="section-heading">
             <div>
               <p class="section-number">STEP 03</p>
@@ -80,13 +128,13 @@
           <div class="selection-card">
             <div class="location-summary">
               <span class="pin" aria-hidden="true">●</span>
-              <div><small id="summary-prefecture"></small><strong id="summary-station"></strong></div>
+              <div><small id="archive-summary-prefecture"></small><strong id="archive-summary-station"></strong></div>
             </div>
             <label class="date-field">
               <span>確認したい日</span>
-              <input id="weather-date" type="date">
+              <input id="archive-weather-date" type="date">
             </label>
-            <a id="jma-link" class="primary-button" href="#" target="_blank" rel="noopener noreferrer">
+            <a id="archive-jma-link" class="primary-button" href="#" target="_blank" rel="noopener noreferrer">
               気象庁でデータを見る <span aria-hidden="true">↗</span>
             </a>
             <p class="external-note">気象庁「過去の気象データ検索」が新しいタブで開きます。</p>
@@ -96,17 +144,18 @@
 
       <section id="about" class="about">
         <p class="section-number">ABOUT</p>
-        <h2>過去の観測データを、もっと身近に。</h2>
-        <p>旅行の記録、イベントの振り返り、自由研究などに。探しにくかった気象庁の観測地点を、都道府県から簡単に選べるようにしました。</p>
+        <h2>今日のことを、数字でそっと確かめる。</h2>
+        <p>「今日は暑かったね」「向こうは雨だったかな」。そんな日常の小さな気がかりを、全国のAMeDAS観測データですぐに確かめられるようにしました。</p>
         <p class="source-note">本サイトは気象庁のデータを転載せず、公式ページへの検索導線を提供します。</p>
       </section>
     </main>
 
     <footer>
-      <span>過去天気検索</span>
+      <span>今日、暑かった？</span>
       <span>観測データ提供：<a href="https://www.jma.go.jp/" target="_blank" rel="noopener noreferrer">気象庁</a></span>
     </footer>
 
+    <script src="./data/current-stations.js"></script>
     <script src="./data/stations.js"></script>
     <script src="./app.js"></script>
   </body>

@@ -1,6 +1,6 @@
-# 過去天気検索
+# 今日、暑かった？
 
-都道府県と観測地点を選び、気象庁の「過去の気象データ検索」へ移動する静的Webアプリです。
+都道府県と観測地点を選び、気象庁AMeDASの直近観測や「過去の気象データ検索」へ移動する静的Webアプリです。
 
 ## ローカルで確認
 
@@ -18,6 +18,7 @@ python -m http.server 8000
 
 ```powershell
 pwsh -File .\scripts\update-stations.ps1
+pwsh -File .\scripts\update-current-stations.ps1
 ```
 
 ## Vercelへ公開
