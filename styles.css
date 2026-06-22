@@ -50,10 +50,11 @@ main { overflow: hidden; }
 .hero h1 em { color: var(--green); font-style: normal; position: relative; }
 .hero h1 em::after { content: ""; position: absolute; left: 3%; right: 1%; bottom: -.08em; height: 7px; background: var(--sun); border-radius: 80% 20% 70% 30%; opacity: .75; transform: rotate(-1deg); }
 .hero-copy { max-width: 630px; margin: 0 auto; color: var(--muted); font-size: 1rem; line-height: 2; }
-.data-tags { display: flex; flex-wrap: wrap; justify-content: center; gap: 8px; margin-top: 30px; }
-.data-tags span { padding: 7px 13px; color: var(--green-dark); background: rgb(255 255 255 / 68%); border: 1px solid var(--line); border-radius: 99px; font-size: .74rem; }
-.care-note { width: fit-content; margin: 34px auto 0; padding: 12px 18px; color: var(--muted); background: rgb(255 255 255 / 55%); border-radius: 99px; font-size: .72rem; }
-.care-note span { margin-right: 5px; color: var(--sun); font-weight: 700; }
+.hero-actions { display: flex; flex-wrap: wrap; justify-content: center; gap: 10px; margin-top: 32px; }
+.hero-action { min-width: 190px; padding: 11px 18px; color: var(--green); background: rgb(255 255 255 / 48%); border: 1px solid rgb(25 104 73 / 28%); border-radius: 8px; font-size: .74rem; font-weight: 600; text-decoration: none; transition: .16s ease; }
+.hero-action:hover { background: white; border-color: var(--green); transform: translateY(-1px); }
+.hero-action-recent { color: white; background: var(--green); border-color: var(--green); }
+.hero-action-recent:hover { color: white; background: var(--green-dark); border-color: var(--green-dark); }
 
 .finder { width: min(1040px, calc(100% - 40px)); min-height: 450px; margin: 0 auto 100px; padding: 42px 54px 56px; background: var(--card); border: 1px solid rgb(22 35 29 / 8%); border-radius: 24px; box-shadow: var(--shadow); }
 .finder { scroll-margin-top: 20px; }
@@ -122,7 +123,7 @@ footer { display: flex; justify-content: space-between; padding: 26px max(32px, 
   .hero { padding: 72px 22px 52px; }
   .hero h1 { font-size: clamp(2.3rem, 12vw, 3.6rem); }
   .hero-copy { font-size: .88rem; }
-  .care-note { max-width: 100%; padding: 11px 14px; line-height: 1.7; }
+  .hero-actions { align-items: stretch; flex-direction: column; max-width: 280px; margin-right: auto; margin-left: auto; }
   .finder { width: calc(100% - 24px); margin-bottom: 75px; padding: 28px 20px 38px; border-radius: 18px; }
   .steps { margin-bottom: 38px; }
   .step { font-size: 0; }
